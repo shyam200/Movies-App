@@ -1,11 +1,10 @@
 package com.example.moviesapp.presentation
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.moviesapp.R
 import com.example.moviesapp.data.models.MovieModel
 import com.example.moviesapp.databinding.ListItemBinding
@@ -43,5 +42,13 @@ class MoviesViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(b
     fun bind(movie : MovieModel){
         binding.cardTitle.text = movie.title
         binding.cardDesc.text = movie.overview
+
+        //creating image url i.e
+       val image_url = "https://image.tmdb.org/t/p/w500/${movie.poster_path}"
+
+        //Using Glide library to upload image on imageView for faster processing
+        Glide.with(binding.cardImage.context)
+            .load(image_url)
+            .into(binding.cardImage)
     }
 }
